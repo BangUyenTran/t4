@@ -10,13 +10,11 @@
       <div class="text">Help</div>
     </div>
   </div>
-  
 </template> 
 <script>
-
 export default {
   name: "Header",
-}
+};
 </script>
 <style scoped>
 .header {
@@ -29,17 +27,16 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(54, 82, 105);
-  width: 150px;
+  background-color: rgb(66, 115, 141);
+  width: 100px;
   color: white;
 }
 .text {
   margin: 0 0;
 }
 .tittle-of-album {
-  background-color: rgb(197, 211, 216);
-  color: rgb(5, 93, 116);
-  font-weight: bold;
+  background-color: rgb(195, 210, 217);
+  color: rgb(72, 131, 170);
   font-size: 20px;
   flex: 1;
   display: flex;

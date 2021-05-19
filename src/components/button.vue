@@ -6,7 +6,7 @@
         :class="{ btnActive: button.isActive }"
         v-for="button in buttons"
         :key="button.id"
-        @click.prevent="changeStyle(button)"
+        @click.prevent="pushRouter(button)"
       >
         {{ button.value }}
       </div>
@@ -29,37 +29,66 @@ export default {
   data() {
     return {
       buttons: [
-        { key: 1, value: "PRINT EDITION", isActive: false },
-        { key: 2, value: "MANAGER", isActive: false },
-        { key: 3, value: "DIGITAL EDITION", isActive: false },
+        {
+          key: 1,
+          value: "PRINT EDITION",
+          name: "print",
+          isActive: false,
+        },
+        {
+          key: 2,
+          value: "MANAGER",
+          name: "manager",
+          isActive: true,
+        },
+        {
+          key: 3,
+          value: "DIGITAL EDITION",
+          name: "digital",
+          isActive: false,
+        },
       ],
       pages: [
-        { key: 1, number: 48, type: "pages", isActive: false },
-        { key: 2, number: 26, type: "sheets", isActive: false },
-        { key: 3, number: 26, type: "screens", isActive: false },
+        { key: 1, number: 48, type: "Pages", name: "print", isActive: false },
+        { key: 2, number: 26, type: "Sheets", name: "manager", isActive: true },
+        {
+          key: 3,
+          number: 26,
+          type: "Screens",
+          name: "digital",
+          isActive: false,
+        },
       ],
     };
   },
-  methods: {
-    changeStyle: function (item) {
-      this.changeActiveBtn();
-      item.isActive = !item.isActive;
-      this.changeActivePage();
+  watch: {
+    "$route.path"() {
+      this.setActiveButton();
     },
-    changeActiveBtn: function () {
+  },
+  methods: {
+    pushRouter(item) {
+      this.$router.push(`/${item.name}`);
+    },
+    setActiveButton() {
+      const routeName = this.$route.path.split("/")[1];
       this.buttons.forEach((button) => {
-        button.isActive = false;
+        if (routeName === button.name) {
+          button.isActive = true;
+        } else {
+          button.isActive = false;
+        }
+      });
+      this.pages.forEach((page) => {
+        page.isActive = false;
+        if (routeName === page.name) {
+          page.isActive = true;
+        }
       });
     },
-    changeActivePage: function () {
-      console.log(this.buttons[2].isActive);
-      const keyBtn = this.buttons.find((button) => button.isActive).key;
-
-      this.pages.forEach(
-        (page) =>
-          (page.isActive = page.key === keyBtn ? !page.isActive : page.isActive)
-      );
-    },
+  },
+  mounted() {
+    this.setActiveButton();
   },
 };
 </script>
@@ -79,16 +108,17 @@ export default {
   border-bottom: 1px solid rgb(160, 157, 157);
   border-top: 1px solid rgb(160, 157, 157);
   line-height: 30px;
-  background-color: rgb(245, 240, 240);
+  background-color: rgb(244, 244, 244);
 }
 .btn-item {
   width: 135px;
-  border: 1px solid rgb(10, 76, 114);
+  border: 1px solid rgb(72, 131, 170);
   border-radius: 7px;
-  border-top: 2px solid rgb(10, 76, 114);
-  border-bottom: 2px solid rgb(10, 76, 114);
+  border-top: 2px solid rgb(72, 131, 170);
+  border-bottom: 2px solid rgb(72, 131, 170);
   margin: 15px;
   background-color: white;
+  color: rgb(171, 193, 205);
   font-size: 14px;
   line-height: 30px;
   position: relative;
@@ -106,7 +136,7 @@ export default {
   width: 135px;
   margin: 0px 15px;
   position: relative;
-  color: rgb(54, 82, 105);
+  color: rgb(171, 193, 205);
 }
 .page-item:not(:last-child)::before {
   content: "";
@@ -118,10 +148,11 @@ export default {
   border-right: 1px solid rgb(160, 157, 157);
 }
 .btnActive {
-  background-color: rgb(54, 82, 105);
+  background-color: rgb(66, 115, 141);
   color: white;
 }
 .pageActive {
-  text-decoration: underline;
+  font-weight: bold;
+  color: rgb(71, 119, 144);
 }
 </style>

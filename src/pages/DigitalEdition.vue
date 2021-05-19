@@ -1,6 +1,6 @@
 <template>
   <p>
-    PrintFditor Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+    Digital Edition Lorem ipsum dolor sit amet consectetur, adipisicing elit.
     Nostrum adipisci minima maxime tempora fugiat ullam inventore. Excepturi
     dolores labore quaerat quasi, necessitatibus eveniet, dolorum impedit vitae,
     molestiae nulla soluta id.
@@ -9,7 +9,9 @@
 
 <script>
 export default {
-  name: "PrintEditor",
+  name: "DigitalEdition",
 };
 </script>
 
+<style>
+</style>
