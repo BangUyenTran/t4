@@ -6,7 +6,7 @@
         :class="{ btnActive: button.isActive }"
         v-for="button in buttons"
         :key="button.id"
-        @click.prevent="pushRouter(button)"
+        @click="pushRouter(button)"
       >
         {{ button.value }}
       </div>

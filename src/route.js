@@ -4,6 +4,7 @@ import DigitalEdition from '@/pages/DigitalEdition';
 import PrintEditor from '@/pages/PrintEditor';
 
 const routes = [
+    { path: '/', redirect: '/manager' },
     { path: '/manager', component: Manager },
     { path: '/print', component: PrintEditor },
     { path: '/digital', component: DigitalEdition },
