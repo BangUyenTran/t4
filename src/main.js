@@ -7,12 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import router from './route';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Vuex from 'vuex'
+import store from './store'
 
 library.add(faQuestionCircle, faLongArrowAltLeft, faCaretRight, faCircle, faEllipsisH, faPlusCircle)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.use(VueRouter, VueAxios, axios)
+Vue.use(VueRouter, VueAxios, axios, Vuex)
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
