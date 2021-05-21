@@ -59,7 +59,6 @@ export default {
       .get("https://mocki.io/v1/6e876c98-40d1-48b6-afc8-5009b9ae49fc")
       .then((res) => {
         this.info = res.data;
-        console.log(res);
       });
   },
 };

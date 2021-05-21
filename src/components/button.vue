@@ -32,30 +32,36 @@ export default {
         {
           key: 1,
           value: "PRINT EDITION",
-          name: "print",
+          path: "/print",
           isActive: false,
         },
         {
           key: 2,
           value: "MANAGER",
-          name: "manager",
+          path: "/manager",
           isActive: true,
         },
         {
           key: 3,
           value: "DIGITAL EDITION",
-          name: "digital",
+          path: "/digital",
           isActive: false,
         },
       ],
       pages: [
-        { key: 1, number: 48, type: "Pages", name: "print", isActive: false },
-        { key: 2, number: 26, type: "Sheets", name: "manager", isActive: true },
+        { key: 1, number: 48, type: "Pages", path: "/print", isActive: false },
+        {
+          key: 2,
+          number: 26,
+          type: "Sheets",
+          path: "/manager",
+          isActive: true,
+        },
         {
           key: 3,
           number: 26,
           type: "Screens",
-          name: "digital",
+          path: "/digital",
           isActive: false,
         },
       ],
@@ -68,12 +74,14 @@ export default {
   },
   methods: {
     pushRouter(item) {
-      this.$router.push(`/${item.name}`);
+      if (this.$route.path === item.path) return;
+
+      this.$router.push(`${item.path}`);
     },
     setActiveButton() {
-      const routeName = this.$route.path.split("/")[1];
+      const routeName = this.$route.path;
       this.buttons.forEach((button) => {
-        if (routeName === button.name) {
+        if (routeName === button.path) {
           button.isActive = true;
         } else {
           button.isActive = false;
@@ -81,7 +89,7 @@ export default {
       });
       this.pages.forEach((page) => {
         page.isActive = false;
-        if (routeName === page.name) {
+        if (routeName === page.path) {
           page.isActive = true;
         }
       });

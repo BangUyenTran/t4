@@ -48,11 +48,6 @@
 import store from "../store";
 export default {
   name: "DigitalEdition",
-  data() {
-    return {
-      info: [],
-    };
-  },
   computed: {
     data: function () {
       return store.state.data;
